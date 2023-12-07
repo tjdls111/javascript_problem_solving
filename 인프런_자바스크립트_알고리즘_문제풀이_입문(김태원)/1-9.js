@@ -31,13 +31,17 @@ const sol = (heights)=>{
 	// console.log('height_list', height_list)
 	const combinations = getCombinations(height_list, 7)
 
-	combinations.forEach(seven_dwarf_heights=>{
+	// forEach에서는 break 없음. 중간에 멈추기 위해서 try, catch 이용할 수 있지만 코드 가독성 떨어짐
+	// some 이용 가능(조건 true되면 순회 멈춤)
+	// 참고 : https://blog.outsider.ne.kr/847
+	combinations.some(seven_dwarf_heights=>{
 		const seven_dwarf_heights_sum = seven_dwarf_heights.reduce((accumulator, currentValue)=>accumulator+currentValue,0)
 		if (seven_dwarf_heights_sum === 100) {
 			console.log(...seven_dwarf_heights)
-			return false
+			return true
 		}
 		})
 	
 	
 }
+sol('20 7 23 19 10 15 25 8 13') //20 7 23 19 10 8 13
